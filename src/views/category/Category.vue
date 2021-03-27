@@ -127,15 +127,20 @@
     mounted() {
       this.scroll = new BScroll(this.$refs.aaaa, {
         // probeType: 3,
-        // pullUpLoad: true
+        pullUpLoad: true
       })
 
-      this.scroll.on('scroll', (position) => {
-        console.log(position);
-      })
+      // this.scroll.on('scroll', (position) => {
+      //   console.log(position);
+      // })
 
       this.scroll.on('pullingUp', () => {
         console.log('上啦加载更多');
+        
+        setTimeout(()=>{
+          this.scroll.finishPullUp();
+        },2000)
+        
       })
     },
     methods: {
