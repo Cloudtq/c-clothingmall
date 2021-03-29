@@ -1,14 +1,14 @@
 <template>
   <div id="detail">
-      <detail-nav-bar class="nav-bar"></detail-nav-bar>
+      <detail-nav-bar @titleClick='titleClick' class="nav-bar"></detail-nav-bar>
       <scroll class="content" ref="scroll">
         <detail-swiper :top-images='topImages' ></detail-swiper>
         <detail-base-info :goods='goods'></detail-base-info>
         <detail-shop-info :shop='shop'></detail-shop-info>
         <detail-goods-info :detail-info='detailInfo' @imageLoad='imageLoad'></detail-goods-info>
-        <detail-param-info :param-info='paramInfo'></detail-param-info>
-        <detail-comment-info :comment-info='commentInfo'></detail-comment-info>
-        <goods-list :goods="recommends"></goods-list>
+        <detail-param-info ref="params" :param-info='paramInfo'></detail-param-info>
+        <detail-comment-info ref="comment" :comment-info='commentInfo'></detail-comment-info>
+        <goods-list ref="recommend" :goods="recommends"></goods-list>
       </scroll>
   </div>
 </template>
@@ -51,10 +51,13 @@ export default {
            detailInfo:{},
            paramInfo:{},
            commentInfo:{},
-           recommends:[]
+           recommends:[],
+           themeTopYs:[],
+           getThemeTopY:null
         }
    },
     created(){
+
         this.iid = this.$route.query.id
         getDetail(this.iid).then(res=>{
 
@@ -74,15 +77,44 @@ export default {
                 this.commentInfo = data.rate.list[0]
             }
 
-            getRecommend().then(res=>{
-                this.recommends = res.data.list
-            })
+            //根据最新的数据，对应的DOM已经被渲染出来
+            //但是图片还没有加载完（目前获得的offsetTop没有包含其中的图片）
+            // this.$nextTick(()=>{
+            //     this.themeTopYs=[]
+            //     this.themeTopYs.push(0)
+            //     this.themeTopYs.push(-this.$refs.params.$el.offsetTop)
+            //     this.themeTopYs.push(-this.$refs.comment.$el.offsetTop)
+            //     this.themeTopYs.push(-this.$refs.recommend.$el.offsetTop)
+
+            //     console.log(this.themeTopYs);
+            // })
+
 
         })
+
+        //请求推荐数据
+        getRecommend().then(res=>{
+                this.recommends = res.data.list
+        })
+
+        this.getThemeTopY = debounce(()=>{
+                this.themeTopYs=[]
+                this.themeTopYs.push(0)
+                this.themeTopYs.push(-this.$refs.params.$el.offsetTop)
+                this.themeTopYs.push(-this.$refs.comment.$el.offsetTop)
+                this.themeTopYs.push(-this.$refs.recommend.$el.offsetTop)
+                console.log(this.themeTopYs);
+        },20)
     },
     methods:{
         imageLoad(){
             this.$refs.scroll.refresh()
+            this.getThemeTopY()
+
+        },
+        titleClick(index){
+            // console.log(index);
+            this.$refs.scroll.scrollTo(0,this.themeTopYs[index],200)
         }
     },
     mounted(){
