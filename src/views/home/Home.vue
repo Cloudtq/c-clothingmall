@@ -39,6 +39,7 @@
   import { getHomeMultidata, getHomeGoods } from "network/home"
 
   import {debounce} from 'common/utils.js'
+  import {itemListenerMixin} from 'common/mixin.js'
 
   export default {
     name: "Home",
@@ -52,6 +53,7 @@
       Scroll,
       BackTop
     },
+    mixins:[itemListenerMixin],
     data() {
       return {
         banners: [],
@@ -64,7 +66,8 @@
         currentType: 'pop',
         isShowBackTop: false,
         tabOffsetTop:0,
-        isShowTab:false
+        isShowTab:false,
+        saveY:0
       }
     },
     computed: {
@@ -81,21 +84,18 @@
       this.getHomeGoods('new')
       this.getHomeGoods('sell')
     },
-    mounted () {
-      //通过防抖函数包装 refresh，然后在监听图片加载的回调中调用。
-      const refresh = debounce(this.$refs.scroll.refresh,50)
+    activated(){
+      this.$refs.scroll.scroll.scrollTo(0,this.saveY,0)
+      this.$refs.scroll.refresh()
+    },
 
-      //3、监听item中图片加载完成
-      this.$bus.$on('itemImageLoad',()=>{
-        // this.$refs.scroll.refresh()
-        refresh()
-      })
-
-
-
+    deactivated(){
+      this.saveY = this.$refs.scroll.scroll.y
+      this.$bus.$off('itemImageLoad',this.itemImgListener)
+    },
+    mounted(){
     },
     methods: {
-
       //监听轮播图片加载完成后回调
       imageLoad(){
         //2、获取tabControl 的offsetTop
@@ -193,9 +193,5 @@
     z-index: 9;
   }
 
-  /*.content {*/
-    /*height: calc(100% - 93px);*/
-    /*overflow: hidden;*/
-    /*margin-top: 44px;*/
-  /*}*/
+
 </style>
