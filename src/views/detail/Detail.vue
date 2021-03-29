@@ -1,7 +1,7 @@
 <template>
   <div id="detail">
-      <detail-nav-bar @titleClick='titleClick' class="nav-bar"></detail-nav-bar>
-      <scroll class="content" ref="scroll">
+      <detail-nav-bar @titleClick='titleClick' ref="detailNavBar" class="nav-bar"></detail-nav-bar>
+      <scroll class="content" ref="scroll" :probe-type='3'  @scroll="contentScroll">
         <detail-swiper :top-images='topImages' ></detail-swiper>
         <detail-base-info :goods='goods'></detail-base-info>
         <detail-shop-info :shop='shop'></detail-shop-info>
@@ -10,6 +10,7 @@
         <detail-comment-info ref="comment" :comment-info='commentInfo'></detail-comment-info>
         <goods-list ref="recommend" :goods="recommends"></goods-list>
       </scroll>
+      <detail-bottom-bar></detail-bottom-bar>
   </div>
 </template>
 <script>
@@ -20,6 +21,7 @@ import DetailShopInfo from './childCpmponents/DetailShopInfo'
 import DetailGoodsInfo from './childCpmponents/DetailGoodsInfo'
 import DetailParamInfo from './childCpmponents/DetailParamInfo'
 import DetailCommentInfo from './childCpmponents/DetailCommentInfo'
+import DetailBottomBar from './childCpmponents/DetailBottomBar'
 
 import Scroll from 'components/common/scroll/Scroll'
 import GoodsList from 'components/content/goods/GoodsList'
@@ -39,7 +41,8 @@ export default {
         DetailGoodsInfo,
         DetailParamInfo,
         DetailCommentInfo,
-        GoodsList
+        GoodsList,
+        DetailBottomBar
     },
     mixins:[itemListenerMixin],
     data(){
@@ -115,6 +118,24 @@ export default {
         titleClick(index){
             // console.log(index);
             this.$refs.scroll.scrollTo(0,this.themeTopYs[index],200)
+        },
+        contentScroll(position){
+            const positionY = position.y
+
+            for(let i=0;i<this.themeTopYs.length;i++){
+                if(this.$refs.detailNavBar.currentIndex !== i)
+                if(this.eqThemeTopY(positionY,i)){
+                    this.$refs.detailNavBar.currentIndex = i
+                    console.log(this.$refs.detailNavBar.currentIndex);
+                }
+            }
+
+        },
+        eqThemeTopY(y,index){
+            if(index===this.themeTopYs.length-1)
+            return y<=this.themeTopYs[index] 
+            else
+            return y<=this.themeTopYs[index] && y>=this.themeTopYs[index+1]
         }
     },
     mounted(){
