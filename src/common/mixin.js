@@ -1,4 +1,5 @@
 import { debounce } from 'common/utils.js'
+import BackTop from 'components/content/backTop/BackTop'
 
 
 export const itemListenerMixin = {
@@ -18,4 +19,26 @@ export const itemListenerMixin = {
             //3、监听item中图片加载完成
         this.$bus.$on('itemImageLoad', this.itemImgListener)
     }
+}
+
+export const backTopMixin = {
+    data() {
+        return {
+            isShowBackTop: false
+        }
+    },
+    components: {
+        BackTop
+    },
+    methods: {
+        //回到顶部
+        backClick() {
+            this.$refs.scroll.scrollTo(0, 0)
+        },
+        listenShowBackTop(position) {
+            //展示回到顶部按钮
+            this.isShowBackTop = (-position.y) > 1000
+        }
+    }
+
 }

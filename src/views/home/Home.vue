@@ -34,12 +34,11 @@
   import TabControl from 'components/content/tabControl/TabControl'
   import GoodList from 'components/content/goods/GoodsList'
   import Scroll from 'components/common/scroll/Scroll'
-  import BackTop from 'components/content/backTop/BackTop'
 
   import { getHomeMultidata, getHomeGoods } from "network/home"
 
   import {debounce} from 'common/utils.js'
-  import {itemListenerMixin} from 'common/mixin.js'
+  import {itemListenerMixin,backTopMixin} from 'common/mixin.js'
 
   export default {
     name: "Home",
@@ -50,10 +49,9 @@
       NavBar,
       TabControl,
       GoodList,
-      Scroll,
-      BackTop
+      Scroll
     },
-    mixins:[itemListenerMixin],
+    mixins:[itemListenerMixin,backTopMixin],
     data() {
       return {
         banners: [],
@@ -64,7 +62,6 @@
           'sell': {page: 0, list: []},
         },
         currentType: 'pop',
-        isShowBackTop: false,
         tabOffsetTop:0,
         isShowTab:false,
         saveY:0
@@ -123,15 +120,9 @@
 
       },
 
-      //回到顶部
-      backClick() {
-        this.$refs.scroll.scrollTo(0, 0)
-      },
-
       contentScroll(position) {
         //展示回到顶部按钮
-        this.isShowBackTop = (-position.y) > 1000
-
+        this.listenShowBackTop(position)
         //是否吸顶
         this.isShowTab = (-position.y) > this.tabOffsetTop
       },

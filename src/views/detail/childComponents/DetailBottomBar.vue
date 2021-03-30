@@ -29,7 +29,7 @@ export default {
   name:'DetailBottomBar',
   methods: {
     addToCart() {
-      this.$emit("addEvent");
+      this.$emit("addCart");
     }
   }
 };
@@ -43,7 +43,7 @@ export default {
   bottom: 0px;
   left: 0;
   right: 0;
-  height: 2.09rem;
+  height: 49px;
   text-align: center;
   box-shadow: 0 -0.04rem 0.4rem gray;
 }
@@ -60,7 +60,7 @@ export default {
   background: url("~assets/img/detail/detail_bottom.png") 0 0/100%;
   width: 1rem;
   height: 1rem;
-  margin: 0.12rem auto;
+  margin: 10px auto;
 }
 .service .icon {
   background-position: 0 -2.4rem;
@@ -74,7 +74,7 @@ export default {
 }
 .bottom_right > div {
   flex: 1;
-  line-height: 2.09rem;
+  line-height: 49px;
 }
 .cart {
   background-color: rgb(255, 174, 0);
