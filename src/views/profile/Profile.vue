@@ -1,127 +1,173 @@
 <template>
-  <div>
-    <scroll class="content">
-      <ul>
-        <li>个人信息1</li>
-        <li>个人信息2</li>
-        <li>个人信息3</li>
-        <li>个人信息4</li>
-        <li>个人信息5</li>
-        <li>个人信息6</li>
-        <li>个人信息7</li>
-        <li>个人信息8</li>
-        <li>个人信息9</li>
-        <li>个人信息10</li>
-        <li>个人信息11</li>
-        <li>个人信息12</li>
-        <li>个人信息13</li>
-        <li>个人信息14</li>
-        <li>个人信息15</li>
-        <li>个人信息16</li>
-        <li>个人信息17</li>
-        <li>个人信息18</li>
-        <li>个人信息19</li>
-        <li>个人信息20</li>
-        <li>个人信息21</li>
-        <li>个人信息22</li>
-        <li>个人信息23</li>
-        <li>个人信息24</li>
-        <li>个人信息25</li>
-        <li>个人信息26</li>
-        <li>个人信息27</li>
-        <li>个人信息28</li>
-        <li>个人信息29</li>
-        <li>个人信息30</li>
-        <li>个人信息31</li>
-        <li>个人信息32</li>
-        <li>个人信息33</li>
-        <li>个人信息34</li>
-        <li>个人信息35</li>
-        <li>个人信息36</li>
-        <li>个人信息37</li>
-        <li>个人信息38</li>
-        <li>个人信息39</li>
-        <li>个人信息40</li>
-        <li>个人信息41</li>
-        <li>个人信息42</li>
-        <li>个人信息43</li>
-        <li>个人信息44</li>
-        <li>个人信息45</li>
-        <li>个人信息46</li>
-        <li>个人信息47</li>
-        <li>个人信息48</li>
-        <li>个人信息49</li>
-        <li>个人信息50</li>
-        <li>个人信息51</li>
-        <li>个人信息52</li>
-        <li>个人信息53</li>
-        <li>个人信息54</li>
-        <li>个人信息55</li>
-        <li>个人信息56</li>
-        <li>个人信息57</li>
-        <li>个人信息58</li>
-        <li>个人信息59</li>
-        <li>个人信息60</li>
-        <li>个人信息61</li>
-        <li>个人信息62</li>
-        <li>个人信息63</li>
-        <li>个人信息64</li>
-        <li>个人信息65</li>
-        <li>个人信息66</li>
-        <li>个人信息67</li>
-        <li>个人信息68</li>
-        <li>个人信息69</li>
-        <li>个人信息70</li>
-        <li>个人信息71</li>
-        <li>个人信息72</li>
-        <li>个人信息73</li>
-        <li>个人信息74</li>
-        <li>个人信息75</li>
-        <li>个人信息76</li>
-        <li>个人信息77</li>
-        <li>个人信息78</li>
-        <li>个人信息79</li>
-        <li>个人信息80</li>
-        <li>个人信息81</li>
-        <li>个人信息82</li>
-        <li>个人信息83</li>
-        <li>个人信息84</li>
-        <li>个人信息85</li>
-        <li>个人信息86</li>
-        <li>个人信息87</li>
-        <li>个人信息88</li>
-        <li>个人信息89</li>
-        <li>个人信息90</li>
-        <li>个人信息91</li>
-        <li>个人信息92</li>
-        <li>个人信息93</li>
-        <li>个人信息94</li>
-        <li>个人信息95</li>
-        <li>个人信息96</li>
-        <li>个人信息97</li>
-        <li>个人信息98</li>
-        <li>个人信息99</li>
-        <li>个人信息100</li>
-      </ul>
-    </scroll>
+  <div class="profile">
+    <nav-bar class="nav-bar">
+      <div slot="center">我的档案</div>
+    </nav-bar>
+    <div class="login">
+      <img src="~assets/img/profile/avatar.svg" alt="">
+      <div>
+        <p>登陆/注册</p>
+        <div>
+          <img src="~assets/img/profile/phone.svg" alt="">
+          <span>暂无绑定手机号</span>
+        </div>
+      </div>
+      <div><img src="~assets/img/common/arrow-left.svg" alt=""></div>
+    </div>
+    <div class="score-bar">
+      <div class="bar-item first-item">
+        <div><p>0.00</p>元</div>
+        <p>我的余额</p>
+      </div>
+      <div class="bar-item">
+        <div><p>0</p>元</div>
+        <p>我的优惠</p>
+      </div>
+      <div class="bar-item last-item">
+        <div><p>0</p>分</div>
+        <p>我的积分</p>
+      </div>
+    </div>
+    <div class="message">
+      <div class="msg-item"><img src="~assets/img/profile/message.svg" alt=""><span>我的消息</span></div>
+      <div class="msg-item"><img src="~assets/img/profile/pointer.svg" alt=""><span>积分商城</span></div>
+      <div class="msg-item"><img src="~assets/img/profile/vip.svg" alt=""><span>会员卡</span></div>
+    </div>
+    <div class="cart">
+      <div class="cart-item"><img src="~assets/img/profile/cart.svg" alt=""><span>我的购物车</span></div>
+      <div class="cart-item"><img src="~assets/img/profile/shopping.svg" alt=""><span>下载购物APP</span></div>
+    </div>
+
   </div>
 </template>
 
 <script>
-  import Scroll from 'components/common/scroll/Scroll'
+import NavBar from 'components/common/navbar/NavBar'
 
   export default {
     name: "Profile",
     components: {
-      Scroll
+      NavBar
     }
   }
 </script>
 
 <style scoped>
-  .content {
-    height: 300px;
-    background-color: red;
-    overflow: hidden;
+
+  .profile{
+    background-color: #eee;
+    height: 100vh;
+  }
+  .nav-bar{
+    background-color: var(--color-tint);
+    color: #fff;
+  }
+
+  .login{
+    padding: 0 20px;
+    display: flex;
+    background-color: var(--color-tint);
+    color: #fff;
+    font-weight: 400;
+    justify-content: space-between;
+    align-items: center;
+    height: 15%;
+  }
+
+  .login img{
+    width: 90px;
+    height: 90px;
+  }
+
+  .login div img{
+    width: 20px;
+    height: 20px;
+  }
+
+  .score-bar{
+    display: flex;
+    height: 13%;
+  }
+
+  .bar-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+  }
+
+  .score-bar div :first-child{
+      display: inline;
+      text-align: center;
+  }
+
+  .score-bar div p{
+      text-align: center;
+  }
+  .score-bar div :first-child p{
+    color: orangered;
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+  .first-item{
+    border-right: 3px solid #eee;
+  }
+  .last-item{
+    border-left: 3px solid #eee;
+  }
+
+  .message{
+    margin-top: 5%;
+    background-color: #fff;
+    height: 21%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 5px;
+  }
+
+  .message img{
+    width: 25px;
+    height: 25px;
+    margin: 0 14px;
+  }
+
+  .message div{
+    height: 100%;
+  }
+
+  .msg-item{
+    display: flex;
+    align-items: center;
+    border-bottom:3px solid #eee;
+    border-radius: 5px;
+  }
+  .cart{
+    margin-top: 5%;
+    background-color: #fff;
+    height: 14%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 5px;
+  }
+
+  .cart img{
+    width: 25px;
+    height: 25px;
+    margin: 0 14px;
+  }
+  .cart div{
+    height: 100%;
+  }
+  .cart-item{
+    flex: 1;
+    border-bottom:3px solid #eee;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
   }
 </style>
