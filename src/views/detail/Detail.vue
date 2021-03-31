@@ -13,7 +13,6 @@
       <detail-bottom-bar @addCart="addToCart"></detail-bottom-bar>
 
       <back-top @click.native="backClick" v-show="isShowBackTop"/>
-
   </div>
 </template>
 <script>
@@ -34,6 +33,7 @@ import {debounce} from 'common/utils.js'
 import {itemListenerMixin,backTopMixin} from 'common/mixin.js'
 import {getDetail,Goods,Shop,GoodsParam,getRecommend} from 'network/detail'
 import {mapActions} from 'vuex'
+
 
 export default { 
     name: "Detail" ,
@@ -161,7 +161,7 @@ export default {
             // })
 
             this.addCart(product).then(res=>{
-                console.log(res);
+                this.$toast.show(res,2000)
             })
 
 

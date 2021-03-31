@@ -8,7 +8,7 @@
           合计:{{totalPrice}}
       </div>
 
-      <div class="calculate">
+      <div @click="calcClick" class="calculate">
           去计算({{checkNum}})
       </div>
   </div>
@@ -47,6 +47,15 @@ export default {
                 this.$store.state.cartList.forEach(item => item.checked = false)
             else
                 this.$store.state.cartList.forEach(item => item.checked = true)
+        },
+        calcClick(){
+            if(this.$store.state.cartList.some((item)=>{
+                return item.checked
+            })){
+                this.$toast.show('跳转中……',2000)
+            }else
+                this.$toast.show('请选择要购买的商品',2000)
+
         }
     }
 } 

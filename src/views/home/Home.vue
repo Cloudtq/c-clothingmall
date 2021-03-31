@@ -130,6 +130,7 @@
       loadMore() {
         this.getHomeGoods(this.currentType)
       },
+      
       /**
        * 网络请求相关的方法
        */
